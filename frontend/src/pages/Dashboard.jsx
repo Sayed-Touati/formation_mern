@@ -1,7 +1,7 @@
 function Home() {
     return (
         <h1>
-            This Home page
+            Dashboard
         </h1>
     )
 }

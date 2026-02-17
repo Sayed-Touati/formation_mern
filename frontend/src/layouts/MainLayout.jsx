@@ -23,25 +23,25 @@ function MainLayout() {
     const items = [
         getItem('Dashboard', 'dashboard', <MdDashboard />, '/'),
 
-        getItem('Users', 'users', <FaUser />, null, [
-            getItem('Admins List', 'users-admins', null, null),
-            getItem('Add Admin', 'users-roles', null, null),
+        getItem('Admins', 'admins', <FaUser />, null, [
+            getItem('Admins List', 'admins-list', null, '/Admin/list'),
+            getItem('Add Admin', 'admin-add', null, '/admin/add'),
         ]),
 
         getItem('Patients', 'patients', <FaUser />, null, [
-            getItem('Patient List', 'patients-list', null, null),
-            getItem('Add Patient', 'patients-add', null, null),
+            getItem('Patient List', 'patients-list', null, '/patient/list'),
+            getItem('Add Patient', 'patient-add', null, '/patient/add',),
         ]),
 
         getItem('Doctors', 'doctors', <FaUserMd />, null, [
-            getItem('Doctor List', 'doctors-list', null, null),
-            getItem('Add Doctor', 'doctors-add', null, null),
+            getItem('Doctor List', 'doctor-list', null, '/doctor/list',),
+            getItem('Add Doctor', 'doctors-add', null, '/doctor/add',),
         ]),
 
         getItem('Appointments', 'Appointment', <FaCalendarPlus />, null, [
-            getItem('Calendar View', 'appointments-calendar', null, null),
-            getItem('List', 'appointments-list', null, null),
-            getItem('Schedule', 'appointments-schedule', null, null),
+            getItem('Calendar View', 'appointments-calendar', null, '/appointments/calendar',),
+            getItem('List', 'appointments-list', null, '/appointments/list',),
+            getItem('Schedule', 'appointments-schedule', null, '/appointments/schedule',),
         ]),
 
         getItem('Settings', 'Setting', <IoMdSettings />, null),
