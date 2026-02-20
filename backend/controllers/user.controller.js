@@ -122,7 +122,7 @@ async function deleteUser(req, res) {
 
 async function listUsers(req, res) {
     try {
-        const users = userModel.find()
+        const users = await userModel.find()
 
         return res.status(200).json({
             status: true,
