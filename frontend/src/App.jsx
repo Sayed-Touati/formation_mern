@@ -14,6 +14,7 @@ import Dashboard from './pages/Dashboard';
 
 import AdminsList from './pages/AdminsList';
 import AddAdmin from './pages/AddAdmin';
+import EditUser from './pages/EditUser';
 
 import PatientsList from './pages/PatientsList'
 import AddPatient from './pages/AddPatient'
@@ -45,6 +46,7 @@ function App() {
               <Route index element={<Dashboard />} />
               <Route path='/admin/list' element={<AdminsList />} />
               <Route path='/admin/add' element={<AddAdmin />} />
+              <Route path='/admin/edit/:id' element={<EditUser />} />
               <Route path='/patient/list' element={<PatientsList />} />
               <Route path='/patient/add' element={<AddPatient />} />
               <Route path='/doctor/list' element={<DoctorsList />} />

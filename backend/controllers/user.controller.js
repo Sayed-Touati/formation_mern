@@ -1,5 +1,5 @@
 const userModel = require("../models/user.model");
-const { createUserSchema } = require("../schemas/user.schema");
+const { createUserSchema, updateUserSchema } = require("../schemas/user.schema");
 
 async function createUser(req, res) {
   try {
@@ -70,6 +70,14 @@ async function putUser(req, res) {
 
         const user = await userModel.findById(id);
 
+        const validation = updateUserSchema.safeParse(req.body);
+
+        if (!validation.success) {
+        return res.status(400).json({
+            errors: validation.error.flatten(),
+        });
+        }
+
         if (!user) {
         return res.status(404).json({
             status: false,
@@ -84,8 +92,8 @@ async function putUser(req, res) {
 
         res.status(201).json({
             status: true,
-            message: "User Updated Succesfully",
             user: updatedUser,
+            message: "User Updated Succesfully",
         });
     } catch (error) {
         return res.status(500).json({

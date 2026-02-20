@@ -2,8 +2,23 @@ import { Button, Divider, Space, Table, Tag, message } from "antd"
 import React, { useState, useEffect } from "react"
 import axios from 'axios'
 import { format } from "date-fns"
+import { useNavigate } from "react-router-dom"
+import EditUserDrawer from "../components/EditUserDrawer"
 
-const columns = [
+
+const AdminsList = () => {
+
+   const [users, setUsers] = useState([])
+   const [refresh, setRefresh] = useState(false)
+   const navigate = useNavigate()
+
+   const roleColors = {
+      ADMIN: 'red',
+      DOCTOR: 'blue',
+      PATIENT: 'green',
+   };
+
+   const columns = [
    {
       title: "Created At",
       dataIndex: 'createdAt',
@@ -29,22 +44,25 @@ const columns = [
       title: 'Account Type',
       dataIndex: 'role',
       Key: 'role',
-      render: text => <Tag color={text === 'ADMIN' ? 'geekblue': 'green'}>{text}</Tag>
+      render: role => (
+         <Tag color={roleColors[role]}>
+            {role}
+         </Tag>
+      ),
    },
    {
       title: 'Actions',
-      render: (_) => (
+      render: (_, record) => (
          <Space>
             <Button type="link" size="small">Details</Button>
-            <Button type="primary" size="small">Edit</Button>
+            {/* <Button type="primary" size="small" onClick={() => {
+               navigate('/admin/edit/'+record._id)
+            }}>Edit</Button> */}
+            <EditUserDrawer userDetails={record} refresh={refresh} setRefresh={setRefresh} />
          </Space>
       )
    },
 ]
-
-const AdminsList = () => {
-
-   const [users, setUsers] = useState([])
 
    useEffect(() => {
       async function fetchData() {
@@ -58,7 +76,7 @@ const AdminsList = () => {
          }
       }
       fetchData()
-   }, [])
+   }, [refresh])
 
   return (
     <div>
